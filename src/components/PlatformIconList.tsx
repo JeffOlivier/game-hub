@@ -32,7 +32,6 @@ const PlatformIconList = ({ platforms }: Props) => {
         xbox: FaXbox,
     };
 
-    console.log(platforms);
     return (
         <HStack marginY={1}>
             {platforms.map((platform) => (
