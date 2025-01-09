@@ -12,10 +12,11 @@ import getCroppedImageUrl from "../services/image-url";
 // import { Genre } from "../hooks/useGenres";
 
 interface Props {
+    selectedGenre: Genre | null;
     onSelectGenre: (genre: Genre) => void;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
     // const { genres } = useGenres();
     const { data: genres, isLoading, error } = useGenres();
     const sortedGenres = genres.sort((a, b) => a.name.localeCompare(b.name));
@@ -37,6 +38,11 @@ const GenreList = ({ onSelectGenre }: Props) => {
                         />
                         <Button
                             fontSize="lg"
+                            fontWeight={
+                                genre.id === selectedGenre?.id
+                                    ? "bold"
+                                    : "normal"
+                            }
                             variant="link"
                             onClick={() => onSelectGenre(genre)}
                         >
