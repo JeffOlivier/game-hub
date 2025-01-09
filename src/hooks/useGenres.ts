@@ -3,7 +3,7 @@
 // import { CanceledError } from "axios";
 import useData from "./useData";
 
-interface Genre {
+export interface Genre {
     id: number;
     name: string;
 
