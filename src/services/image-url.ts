@@ -1,4 +1,6 @@
 const getCroppedImageUrl = (url: string) => {
+    if (!url) return "";
+
     const index = url.indexOf("media/") + "media/".length;
 
     const frontOfUrl = url.slice(0, index); // this allows us to add info AFTER the media/ part of the URL

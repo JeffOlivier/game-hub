@@ -6,12 +6,29 @@ import { BsChevronDown } from "react-icons/bs";
 //     onSelectPlatform: (platform: Platform) => void;
 // }
 
-const SortSelector = () => {
+interface Props {
+    sortOrder: string;
+    onSelectOrder: (sortOrder: string) => void;
+}
+
+const SortSelector = ({ sortOrder, onSelectOrder }: Props) => {
+    const sortOrders = [
+        { value: "", label: "Relevance" },
+        { value: "-added", label: "Date added" },
+        { value: "name", label: "Name" },
+        { value: "-released", label: "Release date" },
+        { value: "-metacritic", label: "Popularity" },
+        { value: "-rating", label: "Average rating" },
+    ];
+
+    const currentSortOrder = sortOrders.find(
+        (order) => order.value === sortOrder
+    );
+
     return (
         <Menu>
             <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-                {/* {selectedPlatform?.name || "Platforms"} */}
-                Order by: Relevance
+                Order by: {currentSortOrder?.label || "Relevance"}
             </MenuButton>
             <MenuList>
                 {/* {sortedPlatforms.map((platform) => (
@@ -22,12 +39,15 @@ const SortSelector = () => {
                             {platform.name}
                         </MenuItem>
                     ))} */}
-                <MenuItem>Relevance</MenuItem>
-                <MenuItem>Date added</MenuItem>
-                <MenuItem>Name</MenuItem>
-                <MenuItem>Release date</MenuItem>
-                <MenuItem>Popularity</MenuItem>
-                <MenuItem>Average rating</MenuItem>
+                {sortOrders.map((order) => (
+                    <MenuItem
+                        key={order.value}
+                        value={order.value}
+                        onClick={() => onSelectOrder(order.value)}
+                    >
+                        {order.label}
+                    </MenuItem>
+                ))}
             </MenuList>
         </Menu>
     );
