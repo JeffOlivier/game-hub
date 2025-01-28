@@ -4,7 +4,7 @@ import {
     List,
     ListItem,
     Image,
-    Spinner,
+    // Spinner,
     Button,
     Heading,
 } from "@chakra-ui/react";
@@ -19,12 +19,17 @@ interface Props {
 
 const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
     // const { genres } = useGenres();
-    const { data: genres, isLoading, error } = useGenres();
-    const sortedGenres = genres.sort((a, b) => a.name.localeCompare(b.name));
+    const { data, /*isLoading,*/ error } = useGenres();
+    // const { data: genres, error, isLoading } = useGenres();
+    // if (isLoading) return <p>Loading...</p>;
+    // if (error) return <p>{error.message}</p>;
+    const sortedGenres = data?.results
+        ? data.results.sort((a, b) => a.name.localeCompare(b.name))
+        : [];
 
     if (error) return null;
 
-    if (isLoading) return <Spinner />;
+    // if (isLoading) return <Spinner />;
 
     return (
         <>
