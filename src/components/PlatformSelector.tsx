@@ -9,10 +9,10 @@ interface Props {
 }
 
 const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: Props) => {
-    const { data: platforms, error } = usePlatforms();
-    const sortedPlatforms = platforms.sort((a, b) =>
-        a.name.localeCompare(b.name)
-    );
+    const { data, error } = usePlatforms();
+    const sortedPlatforms = data?.results
+        ? data.results.sort((a, b) => a.name.localeCompare(b.name))
+        : [];
 
     if (error) return null;
 
