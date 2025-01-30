@@ -1,6 +1,7 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatforms, { Platform } from "../hooks/usePlatforms";
+import usePlatform from "../hooks/usePlatform";
 
 interface Props {
     selectedPlatformId?: number;
@@ -12,7 +13,7 @@ const PlatformSelector = ({ selectedPlatformId, onSelectPlatform }: Props) => {
 
     if (error) return null;
 
-    const platform = data?.results.find((p) => p.id === selectedPlatformId);
+    const platform = usePlatform(selectedPlatformId);
 
     const sortedPlatforms = data?.results
         ? data.results.sort((a, b) => a.name.localeCompare(b.name))
