@@ -1,17 +1,18 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
+import useGameQueryStore from "../store";
 
 // interface Props {
 //     selectedPlatform: Platform | null;
 //     onSelectPlatform: (platform: Platform) => void;
 // }
 
-interface Props {
-    sortOrder: string;
-    onSelectOrder: (sortOrder: string) => void;
-}
+// interface Props {
+//     sortOrder?: string;
+//     onSelectOrder: (sortOrder: string) => void;
+// }
 
-const SortSelector = ({ sortOrder, onSelectOrder }: Props) => {
+const SortSelector = (/*{ sortOrder, onSelectOrder }: Props*/) => {
     const sortOrders = [
         { value: "", label: "Relevance" },
         { value: "-added", label: "Date added" },
@@ -21,6 +22,14 @@ const SortSelector = ({ sortOrder, onSelectOrder }: Props) => {
         { value: "-rating", label: "Average rating" },
     ];
 
+    const setSelectedSortOrder = useGameQueryStore((s) => s.setSortOrder);
+
+    // sortOrder={store.gameQuery.sortOrder}
+    // onSelectOrder={(sortOrder) =>
+    //     store.setSortOrder(sortOrder)
+    // }
+
+    const sortOrder = useGameQueryStore((s) => s.gameQuery.sortOrder);
     const currentSortOrder = sortOrders.find(
         (order) => order.value === sortOrder
     );
@@ -28,6 +37,7 @@ const SortSelector = ({ sortOrder, onSelectOrder }: Props) => {
     return (
         <Menu>
             <MenuButton as={Button} rightIcon={<BsChevronDown />}>
+                {/* Order by: {currentSortOrder?.label || "Relevance"} */}
                 Order by: {currentSortOrder?.label || "Relevance"}
             </MenuButton>
             <MenuList>
@@ -43,7 +53,8 @@ const SortSelector = ({ sortOrder, onSelectOrder }: Props) => {
                     <MenuItem
                         key={order.value}
                         value={order.value}
-                        onClick={() => onSelectOrder(order.value)}
+                        // onClick={() => onSelectOrder(order.value)}
+                        onClick={() => setSelectedSortOrder(order.value)}
                     >
                         {order.label}
                     </MenuItem>
