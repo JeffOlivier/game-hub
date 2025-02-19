@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useGameDetails from "../hooks/useGameDetails";
 import { Heading, Spinner, Text } from "@chakra-ui/react";
 
@@ -25,7 +25,8 @@ const GameDetailPage = () => {
     return (
         <>
             <Heading>{game.name}</Heading>
-            <Text>{game.description_raw}</Text>
+            <Text marginBottom={10}>{game.description_raw}</Text>
+            <Link to="/">HOME</Link>
         </>
     );
 };
