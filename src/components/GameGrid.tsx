@@ -6,6 +6,7 @@ import useGames /*, { PAGE_SIZE }*/ from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
+import { Link } from "react-router-dom";
 
 // interface Props {
 //     gameQuery: GameQuery;
@@ -52,6 +53,7 @@ const GameGrid = (/*{ gameQuery }: Props*/) => {
                 <SimpleGrid
                     columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
                     spacing={6}
+                    padding={2}
                 >
                     {isLoading &&
                         skeletons.map((skeleton) => (
@@ -63,9 +65,11 @@ const GameGrid = (/*{ gameQuery }: Props*/) => {
                     {data?.pages.map((page, index) => (
                         <Fragment key={index}>
                             {page?.results.map((game) => (
-                                <GameCardContainer key={game.id}>
-                                    <GameCard game={game} />
-                                </GameCardContainer>
+                                <Link to={`/games/${game.slug}`}>
+                                    <GameCardContainer key={game.id}>
+                                        <GameCard game={game} />
+                                    </GameCardContainer>
+                                </Link>
                             ))}
                         </Fragment>
                     ))}

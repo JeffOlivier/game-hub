@@ -1,7 +1,33 @@
-import React from "react";
+import { useParams } from "react-router-dom";
+import useGameDetails from "../hooks/useGameDetails";
+import { Heading, Spinner, Text } from "@chakra-ui/react";
 
 const GameDetailPage = () => {
-    return <div>GameDetailPage</div>;
+    const params = useParams();
+    // const {slug} = useParams();
+
+    // const {
+    //     data,
+    //     error,
+    //     isLoading,
+    //     // isFetchingNextPage,
+    //     fetchNextPage,
+    //     hasNextPage,
+    //     // } = useGames(gameQuery);
+    // } = useGameDetails(params.id);
+
+    const { data: game, isLoading, error } = useGameDetails(params.slug!);
+
+    if (isLoading) return <Spinner />;
+
+    if (error || !game) throw error;
+
+    return (
+        <>
+            <Heading>{game.name}</Heading>
+            <Text>{game.description_raw}</Text>
+        </>
+    );
 };
 
 export default GameDetailPage;
