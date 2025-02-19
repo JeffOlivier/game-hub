@@ -1,3 +1,7 @@
 form {
     width: 100%;
 }
+
+.video-player {
+    border: 1px darkslategrey solid;
+}
