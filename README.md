@@ -1,50 +1,36 @@
-# React + TypeScript + Vite
+# Game Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GameHub is a video game discovery web app that helps you find new and interesting games to play. With GameHub, you can search for games by platform, genre, and more.
 
-Currently, two official plugins are available:
+[![image](public/images/gamehub-cover.png)](https://gamehub.jeffolivier.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Game Hub is a platform designed to streamline your gaming experience by providing easy sorting options based on genres and release dates, as well as a powerful search feature to find your favorite games in no time! This project is a simplified replica of the [RAWG's site](https://rawg.io/), which uses the non-commercial access of their [API](https://rawg.io/apidocs) and is based on the Mosh Hamedani's course [React 18 and TypeScript](https://codewithmosh.com/p/ultimate-react-part1).
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Platform & genre filters to easily find games that match your preferences.
+- Game info includes summary, platform, genre, publisher, and metascore ratings.
+- Dark/Light mode switch.
 
-- Configure the top-level `parserOptions` property like this:
+## Tech Stuff
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- React / TypeScript
+- Vite build tool for fast development and optimized production builds.
+- Responsive Design, ensuring an optimal experience on various devices.
+- Axios to fetch and submit data via REST APIs.
+- React Hook Forms for form components.
+- Chakra UI for a visually appealing and user-friendly experience.
+- Lazy loading used to improve performance when browsing large game libraries.
+- Zod form validation for robust data handling and improved user experience.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+![image](public/images/gamehub-game.png)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Installation
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+To get started with GameHub, follow these steps:
+
+1. Clone this repository to your local machine.
+2. Run `npm install` to install the required dependencies.
+3. Get a RAWG API key at https://rawg.io/apidocs. You'll have to create an account first.
+4. Add the API key to **src/services/api-client.ts**
+5. Run `npm run dev` to start the web server.
